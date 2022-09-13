@@ -1,0 +1,2559 @@
+% PLEASE USE THIS FILE AS A TEMPLATE
+% Check file iosart2x.tex for more examples
+
+% add. options: [seceqn,secthm,crcready,onecolumn]
+\documentclass[aic]{iosart2x}
+%\documentclass{article}
+\definecolor{maroon}{cmyk}{0,0.87,0.68,0.32}
+%%%%%%%%
+%
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage[frenchb]{babel}
+\usepackage{supertabular}  
+\usepackage{longtable}
+\usepackage{bbding}
+%\usepackage[dvipsnames]{xcolor}
+\definecolor{mygray}{gray}{0.95}
+%\definecolor{mycyan}{blue}{0.9}
+\usepackage{pifont}
+ \usepackage{relsize}
+\usepackage{wasysym}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{appendix}
+%\usepackage[table]{xcolor}
+\usepackage{colortbl}
+
+%\usepackage{tabularx,colortbl}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcommand{\gray}{\rowcolor[gray]{.90}}
+\usepackage{array,multirow,makecell}
+\setcellgapes{0.5pt}
+\usepackage{tikz}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\usetikzlibrary{trees}
+\usetikzlibrary{shapes.geometric,calc}
+\usepackage{caption}
+\usepackage{slashbox}
+\usepackage{subfig} 
+\usepackage{tikz}
+\usepackage{MnSymbol,wasysym}
+\usepackage{paralist}
+\usepackage{bm}
+\usepackage{ulem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{lmodern}
+\usepackage{nomencl}
+\usepackage[T1]{fontenc}
+\renewcommand{\labelitemi}{$\bullet$}
+\usepackage{color}
+
+%\setcounter{tocdepth}{3}
+\usepackage{url}
+%\usepackage[normalem]{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage{comment}
+\usepackage{breqn}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{color}
+%\usepackage[dvipsnames]
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{nomencl}
+\makenomenclature
+
+\newcommand{\myremark}[2]{
+   \textcolor{red}{\textsf{#1}
+         {\small$\blacktriangleright${#2}$\blacktriangleleft$}
+    }
+}
+\newcommand{\myremarkk}[2]{
+   \textcolor{olive}{\textsf{#1}
+         {\small$\blacktriangleright${#2}$\blacktriangleleft$}
+    }
+}
+\newcommand\GB[1]{\myremark{GB}{#1}}
+\newcommand\HJ[1]{\myremarkk{HJ}{#1}}
+\DeclareUnicodeCharacter{2212}{-}
+\DeclareUnicodeCharacter{2217}{-}
+\usepackage{lscape}
+
+
+%%%%%%%%%%% Put your definitions here
+
+%%%%%%%%%%% End of definitions
+
+\pubyear{0000}
+\volume{0}
+\firstpage{1}
+\lastpage{1}
+
+
+\begin{document}
+%%\tableofcontents
+\begin{frontmatter}
+%\tableofcontents
+%\pretitle{}
+
+%\title{Machine Learning based Consumer IoT Device Classification from a Network Perspective: A Survey and Taxonomy}
+
+\title{Smart Home IoT Device Classification using Machine Learning based Network Traffic Analysis: a Survey and Taxonomy}
+
+% Two or more authors:
+\author[A]{\inits{N.}\fnms{Name1} \snm{Surname1}\ead[label=e1]{first@somewhere.com}%
+\thanks{Corresponding author. \printead{e1}.}},
+\author[B]{\inits{N.N.}\fnms{Name2 Name2} \snm{Surname2}\ead[label=e2]{second@somewhere.com}}
+and
+\author[B]{\inits{N.-N.}\fnms{Name3-Name3} \snm{Surname3}\ead[label=e3]{third@somewhere.com}}
+\runningauthor{N. Surname1 et al.}
+\address[A]{Department first, \orgname{University or Company name},
+Abbreviate US states, \cny{Country}\printead[presep={\\}]{e1}}
+\address[B]{Department first, \orgname{University or Company name},
+Abbreviate US states, \cny{Country}\printead[presep={\\}]{e2,e3}}
+
+
+
+\end{frontmatter}
+
+\appendixpage
+\label{Appendix}
+
+\begin{figure*}[h]
+\caption{Overview of the proposed taxonomy}
+\label{fig:Taxonomy}
+\includegraphics[width=0.5\textwidth]{Taxonomy.png}
+\medskip 
+ \centering
+\end{figure*}
+
+\clearpage
+\onecolumn
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% \usepackage{longtable}
+% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
+\rowcolors{2}{white}{mygray}
+\begin{longtable}[c]{|c|ccc|cc|ccc|cc|ccc|}
+\caption{Papers classification according to their Input, data acquisition method and classification granularity}
+\label{tab:inpu_Data_Output}\\ 
+\hline \rowcolor{mygray}
+ &
+  \multicolumn{3}{c|}{Data} &
+  \multicolumn{2}{c|}{} &
+  \multicolumn{3}{c|}{} &
+  \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Collec-\\ tion\\ point\end{tabular}} &
+  \multicolumn{3}{c|}{} \\  \cline{2-4} \rowcolor{mygray} \cline{10-11} \rowcolor{mygray}
+ &
+  \multicolumn{2}{c|}{Collected} &
+   &
+  \multicolumn{2}{c|}{\multirow{-2}{*}{Devices}} &
+  \multicolumn{3}{c|}{\multirow{-2}{*}{Traffic}} &
+  \multicolumn{1}{c|}{at} &
+  after &
+  \multicolumn{3}{c|}{\multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Classification\\ granularity\end{tabular}}} \\ \cline{2-3} \cline{5-14} \rowcolor{mygray}
+\multirow{-3}{*}{paper} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Pri-\\ vate\end{tabular}} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Sha-\\ red \\ pub-\\ licly\end{tabular}} &
+  \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Use\\public\\data\end{tabular}} &
+  \multicolumn{1}{c|}{IoT} &
+  \begin{tabular}[c]{@{}c@{}}Non \\ IoT\end{tabular} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Set-\\ up\end{tabular}} &
+  \multicolumn{1}{c|}{Idle} &
+  \begin{tabular}[c]{@{}c@{}}Inter-\\ action\end{tabular} &
+  \multicolumn{2}{c|}{the gw} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Ins-\\ tance\end{tabular}} &
+  \multicolumn{1}{c|}{Type} &
+  \begin{tabular}[c]{@{}c@{}}Cate-\\ gory\end{tabular} \\ \hline \rowcolor{white}
+\endfirsthead
+%
+\multicolumn{14}{c}%
+{{\bfseries Table \thetable\ continued from previous page}} \\
+\hline \rowcolor{mygray}
+ &
+  \multicolumn{3}{c|}{Data} &
+  \multicolumn{2}{c|}{} &
+  \multicolumn{3}{c|}{} &
+  \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Collec-\\ tion\\ point\end{tabular}} &
+  \multicolumn{3}{c|}{} \\ \cline{2-4} \rowcolor{mygray} \cline{10-11} \rowcolor{mygray}
+ &
+  \multicolumn{2}{c|}{Collected} &
+   &
+  \multicolumn{2}{c|}{\multirow{-2}{*}{Devices}} &
+  \multicolumn{3}{c|}{\multirow{-2}{*}{Traffic}} &
+  \multicolumn{1}{c|}{at} &
+  after &
+  \multicolumn{3}{c|}{\multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Classification\\ granularity\end{tabular}}} \\ \cline{2-3} \cline{5-14} \rowcolor{mygray}
+\multirow{-3}{*}{paper} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Pri-\\ vate\end{tabular}} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Sha-\\ red \\ pub-\\ licly\end{tabular}} &
+  \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Use\\ public\\ data\end{tabular}} &
+  \multicolumn{1}{c|}{IoT} &
+  \begin{tabular}[c]{@{}c@{}}Non \\ IoT\end{tabular} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Set-\\ up\end{tabular}} &
+  \multicolumn{1}{c|}{Idle} &
+  \begin{tabular}[c]{@{}c@{}}Inter-\\ action\end{tabular} &
+  \multicolumn{2}{c|}{the gw} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Ins-\\ tance\end{tabular}} &
+  \multicolumn{1}{c|}{Type} &
+  \begin{tabular}[c]{@{}c@{}}Cate-\\ gory\end{tabular} \\ \hline
+\endhead
+
+
+\% &  
+  \multicolumn{1}{c|}{45 \%} &
+  \multicolumn{1}{c|}{8\% } &
+  60\% &
+  \multicolumn{1}{c|}{100\%} &
+  37\% &
+  \multicolumn{1}{c|}{19\%} &
+  \multicolumn{1}{c|}{77\%} &
+  77\% &
+  \multicolumn{1}{c|}{92\%} &
+   7\% &
+  \multicolumn{1}{c|}{0\%} &
+  \multicolumn{1}{c|}{81\%} &
+   23 \% \\ \hline
+  
+\cite{meidan2017detection} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+
+
+\cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{meidan2017profiliot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+
+\cite{santos2018efficient} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51}\\ \hline
+  
+\cite{bai2018automatic} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+
+\cite{aksu2018identification} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{aneja2018iot}&
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+
+\cite{bezawada2018iotsense} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51}\\ \hline
+  
+\cite{huang2019booting} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{salman2019machine} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{marchal2019audi} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{sun2019automated} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51}&
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{aksoy2019automated} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+
+\cite{hsu2019automatic} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+
+\cite{thangavelu2018deft} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{ortiz2019devicemien} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+ \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{valdez2019discover} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{pinheiro2019identifying} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+
+\cite{sivanathan2019inferring} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{hamza2019detecting} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53}&
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{song2019iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{msadek2019iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing}&
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{hamad2019iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{shahid2018iot} & 
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{deng2019iotspot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+
+\cite{wang2019iottracker} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{le2019policy} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{hafeez2019protecting} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53}&
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{yang2019towards} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{meidan2020novel} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53}\\ \hline
+  
+\cite{sun2020accurate}&
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{fan2020iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{ammar2020autonomous} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{sivanathan2020detecting} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53}\\ \hline
+  
+\cite{kotak2020iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{bao2020iot}&
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{meidan2017detection} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{bremler2020iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2017characterizing, alrawi2019sok} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+
+\cite{Melnik2020Machine} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{alrawi2019sok, sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{sivanathan2020managing} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{cirillo2020packet} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51}&
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{ma2020pinpointing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{kolcun2020case} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+ \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} \\ \hline
+  
+\cite{yu2020you} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{dong2020your} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{babun2020z} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53}&
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+
+\cite{bassene2021group} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+  
+\cite{zhang2020effiective} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{greis2021automated} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{sun2021cis} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{cvitic2021ensemble} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} \\ \hline
+
+\cite{ferman2021gradient} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53}&
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51}\\ \hline
+  
+\cite{ma2021inferring} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{yin2021iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying,alrawi2019sok} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+\cite{kostas2021iotdevid} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying, alrawi2019sok, miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{ferman2021machine} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{ \ding{53}} &
+  \cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+ 
+\cite{kolcun2021revisiting} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+
+\cite{nukavarapu2021securing} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \cite{sivanathan2018classifying,garcia2020IoT23} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} \\ \hline
+  
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+% 
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+  
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+% 
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+  
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+% 
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+  
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+% 
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+  
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+% 
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+  
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+% 
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+  
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+% 
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+  
+% a &
+%   \multicolumn{1}{c|}{b} &
+%   \multicolumn{1}{c|}{c} &
+%   d &
+%   \multicolumn{1}{c|}{e} &
+%   f &
+%   \multicolumn{1}{c|}{g} &
+%   \multicolumn{1}{c|}{h} &
+%   i &
+%   \multicolumn{1}{c|}{j} &
+%   k &
+%   \multicolumn{1}{c|}{l} &
+%   \multicolumn{1}{c|}{m} &
+%   n \\ \hline
+% 
+
+\end{longtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% \usepackage{longtable}
+% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
+\begin{longtable}[c]{|c|ccc|ccccccc|c|c|}
+\rowcolor{white}
+\caption{Papers classification according to their Feature extraction method}
+\label{tab:feature}\\
+\hline
+ &
+  \multicolumn{3}{c|}{} &
+  \multicolumn{6}{c|}{Extracted features} & 
+   &
+   \\ \cline{5-10}
+ &
+  \multicolumn{3}{c|}{\multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Sample / stream\\ definition\end{tabular}}} &
+  \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Packet\\ level\end{tabular}} &
+  \multicolumn{4}{c|}{Flow level} & 
+   &
+   \\ \cline{2-10}
+   
+\multirow{-3}{*}{Paper} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}N\\ packets\end{tabular}} &
+  \multicolumn{1}{c|}{$\Delta t$} &
+  \begin{tabular}[c]{@{}c@{}}Con-\\ nec-\\ tion\end{tabular} &
+  \multicolumn{1}{c|}{H} &
+  \multicolumn{1}{c|}{P} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Vo-\\ lume\end{tabular}} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Pro-\\ tocol\end{tabular}} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Tem-\\ poral\end{tabular}} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Pe-\\ riodic\end{tabular}} &
+  \multirow{-3}{*}{\begin{tabular}[c]{@{}c@{}}Dimen-\\ siona-\\ lity\\ reduc\end{tabular}} &
+  \multirow{-3}{*}{DL} \\ \hline
+\endfirsthead
+%
+\rowcolor{white}
+\multicolumn{12}{c}%
+{{\bfseries Table \thetable\ continued from previous page}} \\
+\hline
+ &
+  \multicolumn{3}{c|}{} &
+  \multicolumn{6}{c|}{Extracted features} &
+   &
+   \\ \cline{5-10}
+ &
+  \multicolumn{3}{c|}{\multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}Sample / stream\\ definition\end{tabular}}} &
+  \multicolumn{2}{c|}{\begin{tabular}[c]{@{}c@{}}Packet\\ level\end{tabular}} &
+  \multicolumn{4}{c|}{Flow level} &
+   &
+   \\ \cline{2-10}
+\multirow{-3}{*}{Paper} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}N\\ packets\end{tabular}} &
+  \multicolumn{1}{c|}{$\Delta t$} &
+  \begin{tabular}[c]{@{}c@{}}Con-\\ nec-\\ tion\end{tabular} &
+  \multicolumn{1}{c|}{H} &
+  \multicolumn{1}{c|}{P} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Vo-\\ lume\end{tabular}} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Pro-\\ tocol\end{tabular}} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Tem-\\ poral\end{tabular}} &
+  \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Pe-\\ riodic\end{tabular}} &
+  \multirow{-3}{*}{\begin{tabular}[c]{@{}c@{}}Dimen-\\ siona-\\ lity\\ reduc\end{tabular}} &
+  \multirow{-3}{*}{DL} \\ \hline
+\endhead
+
+\% &
+  \multicolumn{1}{c|}{35\%} &
+  \multicolumn{1}{c|}{24\%} &
+  76\% &
+  \multicolumn{1}{c|}{30\%} &
+  \multicolumn{1}{c|}{31\%} &
+  \multicolumn{1}{c|}{61\%} &
+  \multicolumn{1}{c|}{31\%} &
+  \multicolumn{1}{c|}{49\%} &
+  \multicolumn{1}{c|}{5\%} &
+  30\% &
+  12\% \\ \hline
+  
+\cite{meidan2017detection} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+\cite{miettinen2017iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53}\\ \hline
+  
+  
+\cite{meidan2017profiliot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+\cite{santos2018efficient} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+  
+  
+\cite{bai2018automatic} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+\cite{aksu2018identification} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{aneja2018iot}&
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+\cite{bezawada2018iotsense} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53}\\ \hline
+  
+  
+  
+\cite{huang2019booting} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+
+\cite{salman2019machine} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{marchal2019audi} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+  
+\cite{sun2019automated} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+%   %
+
+\cite{aksoy2019automated} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+  
+\cite{hsu2019automatic} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{sivanathan2018classifying} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+\cite{thangavelu2018deft} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53}\\ \hline
+  
+  
+\cite{ortiz2019devicemien} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{51} \\ \hline
+  
+\cite{valdez2019discover} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+  
+  
+\cite{pinheiro2019identifying} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+\cite{sivanathan2019inferring} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+  
+  
+  
+\cite{song2019iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+\cite{msadek2019iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{hamad2019iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53}\\ \hline
+  
+\cite{shahid2018iot} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+%   %
+
+\cite{deng2019iotspot}  &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+\cite{wang2019iottracker} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{le2019policy} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+\cite{hafeez2019protecting} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{yang2019towards} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{51}\\ \hline
+
+\cite{meidan2020novel} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{sun2020accurate} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53}\\ \hline
+\cite{fan2020iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{51} \\ \hline
+  
+  
+  
+\cite{ammar2020autonomous} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+\cite{sivanathan2020detecting} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53}\\ \hline
+  
+  
+\cite{kotak2020iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{51} \\ \hline
+\cite{bao2020iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+  %
+
+\cite{bremler2020iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+\cite{Melnik2020Machine} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{sivanathan2020managing} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+\cite{cirillo2020packet} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{ma2020pinpointing} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+\cite{kolcun2020case} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+\cite{yu2020you} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+\cite{dong2020your} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+  
+\cite{babun2020z} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+\cite{bassene2021group} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+  
+  
+\cite{zhang2020effiective} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+\cite{greis2021automated} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{51} \\ \hline
+  %
+
+\cite{sun2021cis} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+
+\cite{cvitic2021ensemble} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \ding{53} \\ \hline
+ 
+\cite{ferman2021gradient} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+\cite{ma2021inferring}&
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+\cite{yin2021iot} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{51} \\ \hline
+  
+  
+\cite{kostas2021iotdevid} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+\cite{ferman2021machine} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+  
+
+\cite{kolcun2021revisiting} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \ding{53} &
+  \ding{53} \\ \hline
+  
+
+\cite{nukavarapu2021securing} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+ \ding{51} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{51}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \multicolumn{1}{c|}{\ding{53}} &
+  \ding{53} &
+  \ding{51} \\ \hline
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% % 
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+  
+% %   
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+  
+% %   
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+  
+% %   
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+  
+  
+% %   
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+  
+% %   
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% %   %
+% % 
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+  
+% %   
+% % a &
+% %   \multicolumn{1}{c|}{b} &
+% %   \multicolumn{1}{c|}{c} &
+% %   d &
+% %   \multicolumn{1}{c|}{e} &
+% %   \multicolumn{1}{c|}{f} &
+% %   \multicolumn{1}{c|}{g} &
+% %   \multicolumn{1}{c|}{h} &
+% %   \multicolumn{1}{c|}{i} &
+% %   \multicolumn{1}{c|}{j} &
+% %   \multicolumn{1}{c|}{k} &
+% %   l &
+% %   m &
+% %   n \\ \hline
+
+\end{longtable}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{longtable}[c]{|c|c|c|c|c|c|c|c|}
+\caption{Papers classification according to classification approach}
+\label{tab:classification}\\
+\hline
+Paper &
+  \begin{tabular}[c]{@{}c@{}}A classifier\\ per device\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}One \\ multiclass \\ classifier\end{tabular} &
+  Supervised &
+  Unsupervised &
+  DL &
+  Shallow &
+  Evaluation metrics \\ \hline
+\endfirsthead
+%
+\multicolumn{8}{c}%
+{{\bfseries Table \thetable\ continued from previous page}} \\
+\hline
+Paper &
+  \begin{tabular}[c]{@{}c@{}}A classifier\\ per device\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}One \\ multiclass \\ classifier\end{tabular} &
+  Supervised &
+  Unsupervised &
+  DL &
+  Shallow &
+  Evaluation metrics \\ \hline
+\endhead
+%
+\% & 12 \%&92\% & 86\% & 16\% & 30\% & 79\% & 76\% classic  \\ \hline
+
+\cite{miettinen2017iot} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+
+\cite{meidan2017detection} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+\cite{miettinen2017iot} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+
+\cite{meidan2017profiliot} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline
+\cite{santos2018efficient} &\ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline
+
+\cite{bai2018automatic} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{51} &  classic \\ \hline
+\cite{aksu2018identification} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic
+\\ \hline
+
+\cite{aneja2018iot} &\ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{53} &  classic  \\ \hline
+\cite{bezawada2018iotsense} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} & classic  \\ \hline
+
+\cite{huang2019booting} & \ding{51} & \ding{53} & \ding{51} & \ding{53} &\ding{53} & \ding{51} & classic \\ \hline
+\cite{salman2019machine} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{51} &  classic \\ \hline
+
+\cite{marchal2019audi} & \ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{53} &  classic, speed  \\ \hline
+\cite{sun2019automated} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{51} &  classic, speed  \\ \hline
+
+\cite{aksoy2019automated} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} &\ding{51} &  classic \\ \hline
+\cite{hsu2019automatic} & \ding{53} &\ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+
+\cite{sivanathan2018classifying} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline
+\cite{thangavelu2018deft} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline
+
+\cite{ortiz2019devicemien} & \ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{51} &  classic \\ \hline
+\cite{valdez2019discover} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+
+\cite{pinheiro2019identifying} & \ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{51} &  classic, speed \\ \hline
+\cite{sivanathan2019inferring} & \ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{51} &  classic  \\ \hline
+
+\cite{song2019iot} & \ding{53} &\ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+\cite{msadek2019iot} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53}&\ding{51} &  classic \\ \hline
+
+\cite{hamad2019iot} & \ding{51} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{53} &  classic, speed  \\ \hline
+
+\cite{shahid2018iot} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{53} & \ding{51} & classic  \\ \hline
+
+\cite{deng2019iotspot}  & \ding{53} & \ding{51} & \ding{51} &\ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+\cite{wang2019iottracker} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+
+\cite{le2019policy} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline
+\cite{hafeez2019protecting} &\ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline
+
+\cite{yang2019towards} & \ding{53} & \ding{51}&\ding{51} & \ding{53} & \ding{51} & \ding{53} &  classic \\ \hline
+\cite{meidan2020novel} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{51} &  classic, speed \\ \hline
+
+\cite{sun2020accurate} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline
+\cite{fan2020iot} & \ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{51} & \ding{53} &  classic  \\ \hline
+
+\cite{ammar2020autonomous} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic, speed \\ \hline
+\cite{sivanathan2020detecting} &\ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{51} &  classic \\ \hline
+
+\cite{kotak2020iot} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{53} &  classic  \\ \hline
+\cite{bao2020iot} & \ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{51} & \ding{51} &  classic, speed  \\ \hline
+
+\cite{bremler2020iot} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic, speed \\ \hline
+\cite{Melnik2020Machine} & \ding{53}& \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+
+\cite{sivanathan2020managing} & \ding{53} &\ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic, speed  \\ \hline
+\cite{cirillo2020packet} & \ding{53}& \ding{51} & \ding{51} & \ding{53} & \ding{53} &\ding{51} &  classic, speed\\ \hline
+
+\cite{ma2020pinpointing} & \ding{53} & \ding{51}& \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic, speed\\ \hline
+\cite{kolcun2020case} & \ding{51} & \ding{51} & \ding{51}& \ding{53} & \ding{53} & \ding{51} &  classic, speed \\ \hline
+
+\cite{yu2020you} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & classic  \\ \hline
+\cite{dong2020your}& \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{53} &  classic \\ \hline
+
+\cite{babun2020z} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+\cite{bassene2021group} & \ding{53} & \ding{51}& \ding{51}& \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+
+\cite{zhang2020effiective} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline
+
+
+\cite{greis2021automated} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{53} &  classic  \\ \hline
+
+
+\cite{sun2021cis} & \ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{51} &  classic, complexity \\ \hline
+
+\cite{cvitic2021ensemble} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline 
+\cite{ferman2021gradient} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & \ding{53} & \ding{51} & classic \\ \hline 
+\cite{ma2021inferring} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{53} & classic \\ \hline 
+\cite{yin2021iot} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{53} &  classic, speed \\ \hline
+\cite{kostas2021iotdevid} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic  \\ \hline 
+\cite{ferman2021machine} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{53} & \ding{51} &  classic \\ \hline
+\cite{kolcun2021revisiting} & \ding{53} & \ding{51} & \ding{51} & \ding{53} & \ding{51} & \ding{51} &  classic  \\ \hline 
+
+\cite{nukavarapu2021securing} & \ding{53} & \ding{51} & \ding{53} & \ding{51} & \ding{51} & \ding{53} &  classic \\ \hline
+% a & b & c & d & e & f & g &  h  \\ \hline
+% 
+% a & b & c & d & e & f & g &  h \\ \hline
+% a & b & c & d & e & f & g &  h \\ \hline
+% 
+% a & b & c & d & e & f & g &  h  \\ \hline
+% a & b & c & d & e & f & g &  h  \\ \hline
+% 
+% a & b & c & d & e & f & g &  h \\ \hline
+% a & b & c & d & e & f & g &  h \\ \hline
+% 
+% a & b & c & d & e & f & g &  h  \\ \hline
+% a & b & c & d & e & f & g &  h  \\ \hline
+% 
+% a & b & c & d & e & f & g &  h \\ \hline
+% a & b & c & d & e & f & g &  h \\ \hline
+% 
+
+\end{longtable}
+
+
+%\end{longtable}
+%\end{table*}
+
+\twocolumn        % 
+\section*{Acknowledgment}
+
+This research was partly performed within the VarIoT project (https://www.variot.eu/).
+
+% \appendixpage
+
+% \begin{appendices}
+% \begin{subappendices}
+% \subsection{How I became inspired}
+% ...
+% \end{subappendices}
+% \end{appendices}
+%\appendix
+%\section{Applications}
+
+\bibliographystyle{splncs03}
+\bibliography{icdar}
+\end{document}
